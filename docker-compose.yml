@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  fakegen-service:
+    build: .
+    volumes:
+      - fakegen-volume:/fakegen/insert
+      - mysql-volume:/fakegen/sql
+
+  mysql-service:
+    image: "mysql/mysql-server:latest"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - fakegen-volume:/var/lib/mysql-files/
+      - mysql-volume:/docker-entrypoint-initdb.d/
+    depends_on:
+      - "fakegen-service"
+    ports:
+      - "3306:3306"
+    container_name: "mysql"
+
+volumes:
+  fakegen-volume: {}
+  mysql-volume: {}

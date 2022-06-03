@@ -1,0 +1,4 @@
+CREATE USER 'plc'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'plc'@'localhost' WITH GRANT OPTION;
+CREATE USER 'plc'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'plc'@'%' WITH GRANT OPTION;
