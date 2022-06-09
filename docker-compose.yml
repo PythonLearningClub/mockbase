@@ -15,7 +15,8 @@ services:
       - fakegen-volume:/var/lib/mysql-files/
       - mysql-volume:/docker-entrypoint-initdb.d/
     depends_on:
-      - "fakegen-service"
+      "fakegen-service":
+        condition: "service_completed_successfully"
     ports:
       - "3306:3306"
     container_name: "mysql"

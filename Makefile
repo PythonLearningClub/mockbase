@@ -2,10 +2,10 @@ build-faker:
 	docker build -t fakegen/fakegen:latest .
 
 run-faker:
-	docker run --rm --name=faker -v=mysql:/fakegen/sql -v=fakegen-volume:/fakegen/insert -d fakegen/fakegen:latest
+	docker run --rm --name=faker -v=mysql-volume:/fakegen/sql -v=fakegen-volume:/fakegen/insert -d fakegen/fakegen:latest
 
 check-volume:
-	docker run --rm -i -v=mysql:/tmp/myvolume busybox find /tmp/myvolume
+	docker run --rm -i -v=mysql-volume:/tmp/myvolume busybox find /tmp/myvolume
 
 get-logs-faker:
 	docker logs faker  2>&1
